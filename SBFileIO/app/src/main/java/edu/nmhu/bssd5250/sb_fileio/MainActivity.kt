@@ -27,17 +27,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun readData() {
         Log.i("MainActivity file", "in readData()")
-        var fileInputStream: FileInputStream? = null
-        fileInputStream = openFileInput("notes.json")
+        val fileInputStream: FileInputStream? = openFileInput("notes.json")
         var inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
         val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
         val stringBuilder: StringBuilder = StringBuilder()
         var text: String? = null
-        while ({ text = bufferedReader.readLine(); text }() != null) {
+        while (run {
+                text = bufferedReader.readLine()
+                text
+            } != null) {
             stringBuilder.append(text)
         }
-        fileInputStream.close()
-        Log.i("MainActivity file", stringBuilder.toString())
+        fileInputStream?.close()
+        Log.d("MainActivity file", stringBuilder.toString())
     }
 
     private fun writeDataToFile(notesData: NotesData) {
