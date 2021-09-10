@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("MainActivity file", "in makeData()")
         notesData = NotesData(applicationContext)
         for (i in 1..5){
-            val todo = Note("Note $1",
+            val todo = Note("Note $i",
                 "For the birthday party", null)
             notesData.addNote(todo)
         }
